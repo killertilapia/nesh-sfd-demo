@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
+
+    <script>
+        var socket = io();
+
+        var datap = [];
+
+        window.onload = function(){
+        var chart = new CanvasJS.Chart('chartContainer', {
+                                       title: {
+                                           text: 'Some live random data'
+                                       },
+                                       data:[{
+                                           type: 'line',
+                                           dataPoints: datap
+                                       }]
+
+                                       });
+
+        var updateInterval = 100;
+        var dataLength = 500;
+
+        var updateChart = function(ax,ay){
+            datap.push({
+                x: ax,
+                y: ay
+            });
+            if(datap.length > dataLength){
+                datap.shift();
+            }
+            chart.render();
+        }
+
+        socket.on('new val', function(val){
+            console.log(val.value_x + ":" + val.value_y);
+            updateChart(val.value_x, val.value_y);
+        });
+
+        }
+
+
+
+    </script>
+  </head>
+  <body>
+    <div id='chartContainer' style='height: 300px; width: 100%'>
+
+    </div>
+
+  </body>
+</html>
