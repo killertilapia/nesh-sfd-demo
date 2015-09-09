@@ -27,8 +27,6 @@ http.listen(3000, function(){
     console.log('listening on *:3000');
 });
 
-
-
 // utils
 function random(low, high){
   return Math.random() * (high - low) + low;
