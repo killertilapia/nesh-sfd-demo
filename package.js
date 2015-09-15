@@ -4,6 +4,8 @@
   "description": "Consumer side demo for Arduino-Python",
   "dependencies":{
     "express": "4.13.x",
-    "socket.io": "1.3.x"
+    "mime": "1.3.x",
+    "socket.io": "1.3.x",
+    "mqtt": "1.4.x"
   }
 }
