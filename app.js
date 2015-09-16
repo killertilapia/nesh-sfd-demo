@@ -29,7 +29,6 @@ mqtt_client.on('message', function(topic, msg){
 });
 */
 
-var x = 1;
 app.use(express.static('html'));
 
 app.get('/', function(req, res){
@@ -38,6 +37,7 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
     // do nothing
+    console.log('client ' + socket.toString() +' is connected');
 });
 
 
